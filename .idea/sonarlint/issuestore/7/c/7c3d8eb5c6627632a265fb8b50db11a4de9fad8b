@@ -1,0 +1,18 @@
+
+lpython:S1192"NDefine a constant instead of duplicating this literal 'admin_mf.html' 3 times.(ÔÚ¥¾üÿÿÿÿ
+lpython:S1192"NDefine a constant instead of duplicating this literal 're_login.html' 3 times.(Íå…Øıÿÿÿÿ
+ppython:S1192"RDefine a constant instead of duplicating this literal 'çœŸÂ·ç™»é™†ç•Œé¢' 3 times.(Íå…Øıÿÿÿÿ
+cpython:S11923"KDefine a constant instead of duplicating this literal 'login.html' 3 times.(º¶µõ
+hpython:S1192b"KDefine a constant instead of duplicating this literal 'admin.html' 5 times.(™çä–şÿÿÿÿ
+6python:S125"Remove this commented out code.(¢Ñßà
+6python:S125O"Remove this commented out code.(ìúá±
+qpython:S3776S"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(½“ûÿÿÿÿ
+;python:S125a"Remove this commented out code.(ÿÁ…ûÿÿÿÿ
+Dpython:S1481‡",Remove the unused local variable "sess_inf".(ı…´k
+<python:S125ˆ"Remove this commented out code.(›†Î¥ıÿÿÿÿ
+<python:S125¥"Remove this commented out code.(ñ„ç´ùÿÿÿÿ
+<python:S125¨"Remove this commented out code.(‹£òÎşÿÿÿÿ
+ƒpython:S101¼"fRename class "UseFrom_edit" to match the regular expression ^_?([A-Z_][a-zA-Z0-9]*|[a-z_][a-z0-9_]*)$.(×ÔÎßşÿÿÿÿ
+|python:S101‚"dRename class "Login_form" to match the regular expression ^_?([A-Z_][a-zA-Z0-9]*|[a-z_][a-z0-9_]*)$.(öĞšİ
+<python:S125…"Remove this commented out code.(¾½ êùÿÿÿÿ
+7python:S125§"Remove this commented out code.(ÀÙüé

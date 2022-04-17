@@ -1,0 +1,43 @@
+{% extends 'mom.html' %}    <!-- 模板继承 -->
+{% load static %}   <!-- 加载静态资源 -->
+
+{% block content %}
+    <div>
+        <div class="jumbotron" style="text-align: center;">
+            <div class="container">
+                <h1>Hello, world!</h1>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <img src="{% static 'img/my.jpg' %}" width="300px" alt=""/>
+        </div>
+
+        <h2 style="background-color: #e7b0bf">{{ creat.0 }}</h2>
+
+    <!----------------------------------------------------------------
+        <h3 style="color: #72c1cb">操作列表</h3>
+        <p>{{ creat.1 }}</p>
+        {% for i in lis %}
+            <span>{{ i }}</span>
+        {% endfor %}
+        <hr/>
+
+        <h3 style="color: #72c1cb">字典操作</h3>
+        <p>{{ dict_test.name }} :{{ dict_test.val }}</p>
+        <ul>
+            {% for i,k in dict_test.items %}
+                <li>{{ i }}:{{ k }}</li>
+            {% endfor %}
+        </ul>
+        <hr/>
+
+        <h3 style="color: #72c1cb">判断</h3>
+        {% if lis.0 == 'a' %}
+            <p>lis.0 is a</p>
+        {% elif lis.0 == 'B' %}
+            <p>lis.0 is B</p>
+        {% endif %} <-!-- else 也可以 ->-
+        <p>list.0 donot konw</p>    ----------------------------------->
+    </div>
+{% endblock %}

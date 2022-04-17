@@ -1,0 +1,37 @@
+{% extends 'mom.html' %}    <!-- 模板继承 -->
+{% load static %}   <!-- 加载静态资源 -->
+
+{% block content %}
+    <div>
+
+        <h1>REGISTER <span class="label label-default">注册</span></h1>
+        <br/>
+        <form action="/reg/" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="checkbox" aria-label="...">
+                            <br/>
+                        </span>
+                        <input type="text" name="username" class="form-control" aria-label="..." placeholder="用户名"/>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="radio" aria-label="...">
+                        </span>
+                        <input type="password" name="password" class="form-control" aria-label="..." placeholder="密码"/>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <br/>
+            <div class="btn-group" role="group" aria-label="...">
+                <input type="submit" class="btn btn-default" value="提交"/>
+            </div>
+        </form>
+        <div class="alert alert-danger" role="alert">{{ inf }}</div>
+    </div>
+{% endblock %}

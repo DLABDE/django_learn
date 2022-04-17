@@ -1,0 +1,18 @@
+{% extends 'mom.html' %}    <!-- 模板继承 -->
+{% load static %}   <!-- 加载静态资源 -->
+
+{% block content %}
+    <div class="page-header">
+        <div class="col-xs-7">
+            <h1>{{ name }} <small>个人中心</small></h1>
+        </div>
+    </div>
+    <img src="{{ avatar }}" width=15%" />
+
+    <form method="post" enctype="multipart/form-data"><!-- enctype="multipart/form-data" 提交文件才能被收到 -->
+        {% csrf_token %}
+        <input type="file" name="avatar"/>
+        <input type="submit" value="提交">
+    </form>
+
+{% endblock %}

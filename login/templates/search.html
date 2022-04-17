@@ -1,0 +1,60 @@
+{% extends 'mom.html' %}    <!-- 模板继承 -->
+{% load static %}   <!-- 加载静态资源 -->
+
+{% block content %}
+    <div>
+        <h1>搜索结果 <span class="label label-default"></span></h1>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><h4>人员信息</h4></div>
+
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td>PASSWORD</td>
+                    <td>部门</td>
+                    <td>操作</td>
+                </tr>
+                {% for i in inf %}
+                    <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.password }}</td>
+                        <td>{{ i.deparment.title }}</td>
+                        <td><a href="{{ del_html }}={{ i.id }}">删除</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {{ the_pag_html }}
+        </div>
+
+         <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><h4>任务信息</h4></div>
+
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    {% for i in form_tk %}
+                        <td>{{ i.label }}</td>
+                    {% endfor %}
+                </tr>
+                {% for i in data_tk %}
+                    <tr>
+                        <td>{{ i.title }}</td>
+                        <td>{{ i.content }}</td>
+                        <td>{{ i.creat_time }}</td>
+                        <td>{{ i.get_lev_display }}</td>
+                        <td>{{ i.per }}</td>
+                        <td>{{ i.get_status_display }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {{ tk_pag_html }}
+        </div>
+
+    </div>
+{% endblock %}

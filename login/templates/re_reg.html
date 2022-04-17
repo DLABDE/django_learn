@@ -1,0 +1,64 @@
+{% extends 'mom.html' %}    <!-- 模板继承 -->
+{% load static %}   <!-- 加载静态资源 -->
+
+{% block css %}
+    <style>
+        .account {
+            width: 400px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            box-shadow: 5px 5px 20px #aaa;
+
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            padding: 20px 40px;
+        }
+
+        .account h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="account">
+        <h2>REG <span class="label label-default">注册</span></h2>
+        <br/>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <label>用户名</label>
+                {{ form.name }}
+                <span style="color: red">{{ form.name.errors.0 }}</span>
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                {{ form.password }}
+                <span style="color: red">{{ form.password.errors.0 }}</span>
+            </div>
+
+            <div class="form-group">
+                <label>验证码</label>
+                <div class="row">
+                    <div class="col-xs-7">
+                        {{ form.ver_code }}
+                        <span style="color: red">{{ form.ver_code.errors.0 }}</span>
+                    </div>
+                    <div class="col-xs-5">
+                        <img id="img-ver_code" src="/vercode/" alt=""/>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="注册" class="btn btn-primary">
+            <div class="btn-group" role="group" aria-label="...">
+                <a href="/re_login/">
+                    <button type="button" class="btn btn-default">登陆</button>
+                </a>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,232 @@
+{% extends 'mom.html' %}    <!-- 模板继承 -->
+{% load static %}   <!-- 加载静态资源 -->
+
+<!-- https://echarts.apache.org/handbook/zh/basics/import -->
+<!-- https://echarts.apache.org/zh/option.html#legend -->
+
+<!-- https://www.highcharts.com.cn/ 这个也不错 -->
+
+{% block content %}
+    <div>
+        <div class="container">
+            <div class="panel panel-default"><!-- 一个面板 -->
+                <div class="panel-heading">折线图</div>
+                <div class="panel-body">
+                    <div id="portu" style="width: 100%;height:350px;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="panel panel-default"><!-- 一个面板 -->
+                        <div class="panel-heading">柱状图</div>
+                        <div class="panel-body">
+                            <div id="main" style="width: 100%;height:350px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="panel panel-default"><!-- 一个面板 -->
+                        <div class="panel-heading">饼图</div>
+                        <div class="panel-body">
+                            <div id="binge" style="width: 100%;height:350px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/echarts.js' %}"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            init_bar();
+            init_bintu();
+            init_portu();
+        })
+
+        //  柱状图
+        function init_bar() {
+            var myChart = echarts.init(document.getElementById('main'));//对应好ID // 基于准备好的dom，初始化echarts实例
+            var option = {  // 指定图表的配置项和数据
+                title: {text: ''},  //标题
+                tooltip: {},
+                legend: {data: []}, //标签
+                xAxis: {    //X轴
+                    data: []
+                },
+                yAxis: {},  //Y轴
+                series: []//数据
+            };
+            $.ajax({
+                url: "/chart/?bar=1",
+                type: 'get',
+                dataType: 'JSON',
+                success: function (res) {
+                    //获取后台数据更新到前端
+                    option.title.text = res.title;
+                    option.legend.data = res.length;
+                    option.xAxis.data = res.xAxis;
+                    option.series = res.series;
+
+                    myChart.setOption(option);// 使用刚指定的配置项和数据显示图表。
+                }
+            });
+        }
+        // 饼图
+        function init_bintu() {
+            var chartDom = document.getElementById('binge');
+            var myChart = echarts.init(chartDom);
+            var option;
+
+            option = {
+                title: {
+                    text: 'Referer of a Website',
+                    subtext: 'Fake Data',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'horizontal',
+                    bottom: 0,
+                },
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: '50%',
+                        data: [
+                            {value: 1048, name: 'Search Engine'},
+                            {value: 735, name: 'Direct'},
+                            {value: 580, name: 'Email'},
+                            {value: 484, name: 'Union Ads'},
+                            {value: 300, name: 'Video Ads'}
+                        ],
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            option && myChart.setOption(option);
+        }
+        // 折线图
+        function init_portu() {
+            var chartDom = document.getElementById('portu');
+            var myChart = echarts.init(chartDom);
+            var option;
+
+            option = {
+                title: {
+                    text: 'Stacked Area Chart'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Email',
+                        type: 'line',
+                        stack: 'Total',
+                        areaStyle: {},
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [120, 132, 101, 134, 90, 230, 210]
+                    },
+                    {
+                        name: 'Union Ads',
+                        type: 'line',
+                        stack: 'Total',
+                        areaStyle: {},
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name: 'Video Ads',
+                        type: 'line',
+                        stack: 'Total',
+                        areaStyle: {},
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [150, 232, 201, 154, 190, 330, 410]
+                    },
+                    {
+                        name: 'Direct',
+                        type: 'line',
+                        stack: 'Total',
+                        areaStyle: {},
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [320, 332, 301, 334, 390, 330, 320]
+                    },
+                    {
+                        name: 'Search Engine',
+                        type: 'line',
+                        stack: 'Total',
+                        label: {
+                            show: true,
+                            position: 'top'
+                        },
+                        areaStyle: {},
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [820, 932, 901, 934, 1290, 1330, 1320]
+                    }
+                ]
+            };
+
+            option && myChart.setOption(option);
+
+        }
+
+    </script>
+{% endblock %}
